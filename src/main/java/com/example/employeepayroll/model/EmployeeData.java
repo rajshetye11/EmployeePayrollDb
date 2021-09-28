@@ -1,15 +1,17 @@
 package com.example.employeepayroll.model;
 
+import com.example.employeepayroll.dto.EmployeePayrollDTO;
+
 public class EmployeeData {
 	
 	private Integer empId;
 	private String name;
 	private Double salary;
 	
-	public EmployeeData(Integer emp_id,String name,Double salary) {
+	public EmployeeData(Integer emp_id,EmployeePayrollDTO empDto) {
 		this.empId = empId;
-		this.name= name;
-		this.salary = salary;
+		this.name= empDto.getName();
+		this.salary = empDto.getSalary();
 	}
 	public Integer getEmpID() {
 		return empId;
