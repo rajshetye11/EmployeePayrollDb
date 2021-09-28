@@ -1,5 +1,6 @@
 package com.example.employeepayroll.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,17 +15,30 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.employeepayroll.dto.EmployeePayrollDTO;
 import com.example.employeepayroll.dto.ResponseDTO;
 import com.example.employeepayroll.model.EmployeeData;
+import com.example.employeepayroll.service.IEmployeeService;
 
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
 
+	
+	@Autowired
+	public IEmployeeService employeeService;
+	
 	@RequestMapping({"","/","/get"})
 	public ResponseEntity<ResponseDTO> getEmployeeData(){
 		EmployeeData employeeData;
 		employeeData = new EmployeeData(1, new EmployeePayrollDTO("Raj", 6969.00));
 		ResponseDTO res = new ResponseDTO("Success of get", employeeData);
 		return new ResponseEntity<ResponseDTO>(res,HttpStatus.OK);
+	}
+	
+	@GetMapping("/get/{empId}")
+	public ResponseEntity<ResponseDTO> getEmployeePayrollData(@PathVariable("empId") int empId){
+		EmployeeData employeeData=employeeService.getEmployeeById(empId);
+		ResponseDTO res=new ResponseDTO("Get call Success",employeeData);
+		return new ResponseEntity<ResponseDTO>(res,HttpStatus.OK);
+	
 	}
 	
 	@PostMapping("/create")
