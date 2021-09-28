@@ -21,24 +21,27 @@ public class EmployeePayrollService implements IEmployeeService{
 
 	@Override
 	public EmployeeData getEmployeeById(int empId) {
-		EmployeeData employeeData=null;
-		return employeeData;
+		return employeePayrollList.get(empId-1);
 	}
 
 	@Override
 	public EmployeeData createEmployee(EmployeePayrollDTO empDTO) {
-		EmployeeData employeeData=null;
+		EmployeeData employeeData= new EmployeeData(1,empDTO);
+		employeePayrollList.add(employeeData);
 		return employeeData;
 	}
 
 	@Override
 	public EmployeeData updateEmployee(int empId, EmployeePayrollDTO empDTO) {
-		EmployeeData employeeData=null;
+		EmployeeData employeeData= getEmployeeById(empId);
+		employeeData.setName(empDTO.getName());
+		employeeData.setSalary(empDTO.getSalary());
+		employeePayrollList.set(empId, employeeData);
 		return employeeData;
 	}
 
 	@Override
 	public void deleteEmployee(int empId) {
-		
+		employeePayrollList.remove(empId-1);
 	}
 }

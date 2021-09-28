@@ -6,9 +6,9 @@ public class EmployeeData {
 	
 	private Integer empId;
 	private String name;
-	private Double salary;
+	private long salary;
 	
-	public EmployeeData(Integer emp_id,EmployeePayrollDTO empDto) {
+	public EmployeeData(Integer empId,EmployeePayrollDTO empDto) {
 		this.empId = empId;
 		this.name= empDto.getName();
 		this.salary = empDto.getSalary();
@@ -25,10 +25,10 @@ public class EmployeeData {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Double getSalary() {
+	public long getSalary() {
 		return salary;
 	}
-	public void setSalary(Double salary) {
+	public void setSalary(long salary) {
 		this.salary = salary;
 	}
 	@Override

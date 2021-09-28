@@ -3,9 +3,9 @@ package com.example.employeepayroll.dto;
 public class EmployeePayrollDTO {
 
 	private String name;
-	private Double salary;
+	private long salary;
 	
-	public EmployeePayrollDTO(String name,Double salary) {
+	public EmployeePayrollDTO(String name,long salary) {
 		this.name= name;
 		this.salary = salary;
 	}
@@ -15,10 +15,10 @@ public class EmployeePayrollDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Double getSalary() {
+	public long getSalary() {
 		return salary;
 	}
-	public void setSalary(Double salary) {
+	public void setSalary(long salary) {
 		this.salary = salary;
 	}
 }
