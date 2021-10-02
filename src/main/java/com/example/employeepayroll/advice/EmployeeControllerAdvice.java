@@ -7,8 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+@ControllerAdvice
 public class EmployeeControllerAdvice {
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
@@ -22,7 +24,11 @@ public class EmployeeControllerAdvice {
 
 	}
 	
-	
+	@ExceptionHandler(IndexOutOfBoundsException.class)
+	public ResponseEntity<String> noSuchId(IndexOutOfBoundsException ex)
+	{
+		return new ResponseEntity<String>("No id Present " , HttpStatus.NOT_FOUND);
+	}
 
 	@ExceptionHandler(NoSuchElementException.class)
 	public ResponseEntity<String> noIdPresent(NoSuchElementException exception) {
